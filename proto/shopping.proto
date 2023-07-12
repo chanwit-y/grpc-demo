@@ -1,0 +1,53 @@
+syntax="proto3";
+
+package shopping;
+
+option go_package = "./shopping";
+
+message Item {
+	string id = 1;
+	string name = 2;
+	string description = 3;
+	float price = 4;
+}
+
+message AddItemRequest {
+	string user_id = 1;
+	Item item = 2;
+}
+
+message AddItemResponse {
+	string message = 1;
+}
+
+
+message RemoveItemRequest {
+	string user_id = 1;
+	Item item = 2;
+}
+
+message RemoveItemResponse {
+	string message = 1;
+}
+
+message UpdateItemRequest {
+	string user_id = 1;
+	Item item = 2;
+}
+
+message UpdateItemResponse {
+	string message = 1;
+}
+
+message GetItemRequest {}
+
+message GetItemResponse {
+	repeated Item items = 1;
+}
+ 
+service ShoppingService {
+	rpc AddItem(AddItemRequest) returns (AddItemResponse) {}
+	rpc UpdateItem(UpdateItemRequest) returns (UpdateItemResponse) {}
+	rpc RemoveItem(RemoveItemRequest) returns (RemoveItemResponse) {}
+	rpc GetItems(GetItemRequest) returns (GetItemResponse) {}
+}
